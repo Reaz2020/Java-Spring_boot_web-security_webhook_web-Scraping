@@ -1,0 +1,169 @@
+public class MergeNames {
+
+    public static String[] uniqueNames(String[] names1, String[] names2) {
+
+        int k = 0;
+        String[] names = new String[6];
+
+        for (int i = 0; i < names1.length; i++) {
+            String element = names1[i];
+            names[i] = element;
+            k++;
+        }
+        for (int p = 0; p < names2.length; p++) {
+            String element2 = names2[p];
+            names[k] = element2;
+            k++;
+        }
+        int q=6;
+        String tempArray[] = new String[q];
+        for (int i = 0; i < names.length-1; i++) {
+            int p=q;
+                if (names[i]!=names[i+1] )
+                    tempArray[i] = names[i];
+        }
+
+        return tempArray;}
+
+
+    public static void main(String[] args) {
+        String[] names1 = new String[]{"Ava", "Emma", "Olivia"};
+        String[] names2 = new String[]{"Olivia", "Sophia", "Emma"};
+        System.out.println(String.join(", ", MergeNames.uniqueNames(names1, names2))); // should print Ava, Emma, Olivia, Sophia
+
+    }
+}
+
+
+
+
+
+public class SortedSearch {
+    public static int countNumbers(int[] sortedArray, int lessThan) {
+
+        int i = 0, j = 0, k = 0;;
+        for (i = 0; i < sortedArray.length - 1; i++) {
+
+            if (lessThan > sortedArray[i])
+            k=k+1;
+            //return k;
+        }return k;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(SortedSearch.countNumbers(new int[]{1, 3, 5, 7}, 4));
+    }
+}
+
+
+
+
+public class SortedSearch2 {
+    public static int countNumbers(int[] sortedArray, int lessThan) {
+
+        int i = 0, j = 0, k = 0;;
+        for (i = 0; i < sortedArray.length - 1; i++)
+            if (sortedArray[i] > 4) ;
+            k = sortedArray[i]; // k=5, 7+5
+            j=j+k;
+            return j;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(SortedSearch2.countNumbers(new int[]{1, 3, 5, 7}, 4));
+    }
+}
+
+
+
+class Node {
+    private Node leftChild, rightChild;
+
+
+    public Node(Node leftChild, Node rightChild) {
+        this.leftChild = leftChild;
+        this.rightChild = rightChild;
+    }
+
+    public Node getLeftChild() {
+        return this.leftChild;
+    }
+
+    public Node getRightChild() {
+        return this.rightChild;
+    }
+
+    public int height() {
+        int l = 0;
+        int r=0;
+        if(getLeftChild()!=null){
+            l=getLeftChild().height();
+        }
+        if(getRightChild()!=null){
+
+            r=getRightChild().height();
+        }
+        if(r>l){
+            l=r;
+        }
+        return l+1;
+    }
+
+    public static void main(String[] args) {
+        Node leaf1 = new Node(null, null);
+        Node leaf2 = new Node(null, null);
+        Node node = new Node(leaf1, null);
+        Node root = new Node(node, leaf2);
+
+        System.out.println(root.height());
+    }
+}
+
+
+
+
+import java.util.stream.*;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.Comparator;
+
+public class TestResults
+{
+    public static class Student {
+        private String name;
+        private int score;
+
+        public Student(String name, int score) {
+            this.name = name;
+            this.score = score;
+        }
+
+        public int getScore() {
+            return score;
+        }
+
+        public String getName() {
+            return name;
+        }
+    }
+
+    public static List<String> studentsThatPass(Stream<Student> students, int passingScore) {
+        List<String>ret = new ArrayList<String>();
+        //students.sorted(Comparator.comparingInt(students::getScore)).collect(Collectors.toList());
+        students.filter(e -> e.getScore() >= passingScore).forEach(e -> ret.add(e.getName()));
+
+
+        return ret;
+    }
+
+    public static void main(String[] args) {
+
+        List<Student> students = new ArrayList<Student>();
+
+        students.add(new Student("Mike", 80));
+        students.add(new Student("James", 57));
+        students.add(new Student("Alan", 21));
+
+        studentsThatPass(students.stream(), 50).forEach(System.out::println);
+    }
+}
