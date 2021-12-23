@@ -1,0 +1,41 @@
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Hashtable;
+import java.util.Scanner;
+
+public class WeightedGraph {
+    public static <T> void main(String[] args) {
+        Hashtable<T, Hashtable<T, Integer>> edgesMap = new Hashtable<>();
+
+
+        Scanner sc = new Scanner(System.in);
+        int loop = 0;
+
+        while (4 > loop) {
+            Hashtable<T, Integer> tempMap = new Hashtable<>();
+            Hashtable<T, Integer> tempMap2 = new Hashtable<>();
+
+            System.out.println("Node name");
+            String node1 = sc.next();
+            System.out.println("Node to connect ");
+            String node2 = sc.next();
+            System.out.println("Cost");
+            int cost = sc.nextInt();
+
+            Edges e1 = new Edges();// by using constructor will create a graph
+            e1.edg(node1, node2, cost);
+            loop++;
+            if (edgesMap.containsValue(node1)) {
+                tempMap.put((T) node2, cost);
+                edgesMap.put((T) node1, tempMap);
+
+            }
+
+        }
+
+
+        System.out.println(Collections.singletonList(edgesMap));
+
+
+    }
+}
