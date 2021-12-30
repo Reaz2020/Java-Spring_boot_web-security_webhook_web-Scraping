@@ -1,0 +1,39 @@
+
+import java.util.HashMap;
+
+public class FindDuplicatesInArray 
+{
+    public static void main(String[] args) {
+        String b[] = new String[8];
+        int a[] = {0, 0, 8, 9, 4, 4};
+        HashMap<Integer, Integer> tempMap = new HashMap<>();
+        int i, j, v = 0;
+        
+        //using hashMap
+       /* for (i = 0; i < a.length; i++) {
+            for (j = i + 1; j < a.length; j++)
+                if (a[i] == a[j]) tempMap.put(a[i], a[j]);
+
+        }
+        for (Integer key : tempMap.keySet()) {
+            System.out.println(tempMap.get(key));
+        }
+*/
+       
+       //Using Array 
+        System.out.println("  ");
+        // will change it to an array
+        for (i = 0; i < a.length; i++) {
+            for (j = i + 1; j < a.length; j++)
+                if (a[i] == a[j])
+                    v = a[i];
+            b[v] = "**";
+        }
+
+        for (int k=0;k< b.length; k++){
+            if (b[k]!=null)
+            System.out.println(k);
+        }
+
+    }
+}
